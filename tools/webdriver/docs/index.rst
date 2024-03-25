@@ -7,10 +7,10 @@ Welcome to WebDriver client for Python's documentation!
 =======================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
-
+   api
 
 Indices and tables
 ==================
