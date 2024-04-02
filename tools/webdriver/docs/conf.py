@@ -43,5 +43,26 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+# html_theme = 'alabaster'
+html_theme = 'classic'
 html_static_path = ['_static']
+
+
+# -- Get generated git hash --------------------------------------------------
+
+import subprocess
+
+def get_git_commit_hash():
+    try:
+        return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('utf-8').strip()
+    except subprocess.CalledProcessError:
+        return 'unknown'
+
+base_project_commit = get_git_commit_hash()
+base_url = 'https://github.com/web-platform-tests/wpt/commit/'
+commit_str = f'{base_url}/{base_project_commit}'
+
+rst_epilog = f'''
+.. |project_commit| replace:: {base_project_commit[:7]}
+.. _Upstream commit: {commit_str}
+'''
