@@ -54,12 +54,12 @@ import subprocess
 
 def get_git_commit_hash():
     try:
-        return subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('utf-8').strip()
+        return subprocess.check_output(['git', 'merge-base', 'HEAD', 'origin/master']).decode('utf-8').strip()
     except subprocess.CalledProcessError:
         return 'unknown'
 
 base_project_commit = get_git_commit_hash()
-base_url = 'https://github.com/web-platform-tests/wpt/commit/'
+base_url = 'https://github.com/web-platform-tests/wpt/commit'
 commit_str = f'{base_url}/{base_project_commit}'
 
 rst_epilog = f'''
